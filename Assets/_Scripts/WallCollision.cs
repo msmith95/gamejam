@@ -16,7 +16,6 @@ public class WallCollision : MonoBehaviour {
 	void OnTriggerEnter(Collider other){
 		if (other.gameObject.CompareTag ("balloon") || other.gameObject.CompareTag("squirt")) {
 			Destroy (other.gameObject);
-            print("I'm triggered");
 		}
 	}
 }

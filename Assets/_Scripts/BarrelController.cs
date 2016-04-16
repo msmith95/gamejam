@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System;
 
 public class BarrelController : MonoBehaviour {
     
@@ -21,6 +22,8 @@ public class BarrelController : MonoBehaviour {
     public float squirtDelay;
     float nextSquirt;
 
+    int maxBalloonSupply, maxSquirtSupply;
+
 
     public Text balloonSupplyText;
     public Text squirtSupplyText;
@@ -30,6 +33,9 @@ public class BarrelController : MonoBehaviour {
     void Start () {
         squirting = false;
         squirtCounter = 0;
+
+        maxBalloonSupply = balloonSupply;
+        maxSquirtSupply = squirtSupply;
     }
 	
 	// Update is called once per frame
@@ -83,5 +89,14 @@ public class BarrelController : MonoBehaviour {
         balloonSupplyText.text = "Balloons - " + balloonSupply.ToString();
         squirtSupplyText.text = "Squirts - " + squirtSupply.ToString();
         squirtDurationText.text = "Squirt Duration - " + squirtDuration.ToString();
+    }
+
+    public void refillSupplies(int squirtRate, int balloonRate)
+    {
+        if(squirtSupply < maxSquirtSupply) squirtSupply += squirtRate;
+        if(balloonSupply < maxSquirtSupply) balloonSupply += balloonRate;
+
+        if (squirtSupply > maxSquirtSupply) squirtSupply = maxSquirtSupply;
+        if (balloonSupply > maxBalloonSupply) balloonSupply = maxBalloonSupply;
     }
 }
