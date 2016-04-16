@@ -5,8 +5,8 @@ public class PlayerController : MonoBehaviour {
 
     Rigidbody rb;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         rb = GetComponent<Rigidbody>();
 	}
 	
@@ -20,5 +20,9 @@ public class PlayerController : MonoBehaviour {
         Vector3 movement = new Vector3(hmove, 0f, vmove);
 
         rb.velocity = movement * 20;
+
+
+        
     }
+
 }
