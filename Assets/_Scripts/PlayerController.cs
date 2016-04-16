@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        transform.rotation = new Quaternion();
+
         float hmove = Input.GetAxis("Horizontal");
         float vmove = Input.GetAxis("Vertical");
 
