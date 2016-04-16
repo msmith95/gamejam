@@ -45,11 +45,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\_Scripts\BarrelController.cs" />
      <Compile Include="Assets\_Scripts\FireController.cs" />
      <Compile Include="Assets\_Scripts\PlayerController.cs" />
      <Compile Include="Assets\_Scripts\PlayerPlaneAligner.cs" />
      <Compile Include="Assets\_Scripts\WallCollision.cs" />
      <Compile Include="Assets\_Scripts\fire.cs" />
+     <Compile Include="Assets\_Scripts\repeatTexture.cs" />
+     <Compile Include="Assets\_Scripts\waterRefill.cs" />
      <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Simple.shader" />
      <None Include="Assets\Standard Assets\Environment\Water (Basic)\Shaders\FXWaterBasic.shader" />
      <None Include="Assets\Standard Assets\Environment\Water\Water\Shaders\FXWaterPro.shader" />

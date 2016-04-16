@@ -25,5 +25,10 @@ public class FireController : MonoBehaviour {
             totalHealth -= 10;
             Destroy(other.gameObject);
         }
+        else if (other.gameObject.CompareTag("squirt"))
+        {
+            totalHealth -= 1;
+            Destroy(other.gameObject);
+        }
     }
 }
