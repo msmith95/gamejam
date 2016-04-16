@@ -44,7 +44,7 @@ public class PlayerPlaneAligner : MonoBehaviour {
         angle = Mathf.Atan2(mouse_pos.y, mouse_pos.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, -angle, 0));
 
-        if (Input.GetMouseButtonDown(0) && Time.time > nextFire && squirtSupply > 0 && !squirting)
+        if (Input.GetMouseButtonDown(0) && Time.time > nextFire && squirtSupply > 0)
         {
             squirting = true;
             nextSquirt = 0;
@@ -59,18 +59,34 @@ public class PlayerPlaneAligner : MonoBehaviour {
         if (squirting)
         {
             if (Time.time > nextSquirt) {
-                GameObject squirt = Instantiate(squirtPrefab, transform.position + new Vector3(0.0f, 0.0f, 0.5f), Quaternion.Euler(new Vector3(0, -angle, 0))) as GameObject;
-                squirtSupply -= 1;
-                squirtCounter += 1;
-                nextSquirt = Time.time + squirtDelay;
+                if(squirtSupply <= 0)
+                {
+                    squirting = false;
+                }
+                else if (squirtCounter <= squirtDuration || Input.GetMouseButton(0))
+                {
+                    squirtCounter += 1;
+                    GameObject squirt = Instantiate(squirtPrefab, transform.position + new Vector3(0.0f, 0.0f, 0.5f), Quaternion.Euler(new Vector3(0, -angle, 0))) as GameObject;
+                    squirtSupply -= 1;
+                
+                    nextSquirt = Time.time + squirtDelay;
+                }
+                else if (Input.GetMouseButtonUp(0))
+                {
+                    squirting = false;
+                    squirtCounter = 0;
+                }
             }
 
+            
+            
+            /*
             if (squirtCounter == squirtDuration)
             {
                 squirting = false;
                 squirtCounter = 0;
                 nextFire = Time.time + squirtFireRate;
-            }
+            }*/
         }
 
         balloonSupplyText.text = "Balloons - " + balloonSupply.ToString();
