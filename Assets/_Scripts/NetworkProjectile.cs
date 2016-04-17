@@ -18,7 +18,7 @@ public class NetworkProjectile : Photon.MonoBehaviour {
 			//transform.position = Vector3.Lerp(transform.position, this.correctPlayerPos, Time.deltaTime * 5);
 			//transform.rotation = Quaternion.Lerp(transform.rotation, this.correctPlayerRot, Time.deltaTime * 5);
 			transform.position = correctPlayerPos;
-			transform.position = correctPlayerRot;
+			transform.rotation = correctPlayerRot;
 		}
 	}
 
