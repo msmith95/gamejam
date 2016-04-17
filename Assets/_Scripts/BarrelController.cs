@@ -33,6 +33,7 @@ public class BarrelController : Photon.MonoBehaviour {
 
 	PhotonView barrel;
 
+
     // Use this for initialization
     void Start () {
         tag = transform.parent.transform.parent.tag;
@@ -102,7 +103,7 @@ public class BarrelController : Photon.MonoBehaviour {
                     if (tag == "greenTeam") squirt.GetComponent<fire>().setTeam(0);
                     if (tag == "blueTeam") squirt.GetComponent<fire>().setTeam(1);
                     print(squirt.GetComponent<fire>().getTeam());*/
-					barrel.RPC ("createProj", PhotonTargets.AllViaServer, "Squirt", transform.position + new Vector3 (0.5f, 0f, 0f), angle,Input.mousePosition);
+					barrel.RPC ("createProj", PhotonTargets.AllViaServer, "Squirt", transform.position + new Vector3 (0.5f, 0f, 0f), angle,Input.mousePosition, object_pos);
 					GameObject squirt = GameObject.Instantiate(squirtPrefab, transform.position + new Vector3 (0f, 0f, 0f), Quaternion.Euler (new Vector3 (0, -angle, 0))) as GameObject;
 					fire f = squirt.GetComponent<fire> () as fire;
 					f.enabled = true;
@@ -140,7 +141,7 @@ public class BarrelController : Photon.MonoBehaviour {
     }
 
 	[PunRPC]
-	public void createProj (String prefab, Vector3 position, float rot,Vector3 mouse){
+	public void createProj (String prefab, Vector3 position, float rot,Vector3 mouse, Vector3 obj){
 		if (!photonView.isMine){
 			GameObject squirt;
 			if (prefab == "Squirt") {
@@ -152,8 +153,9 @@ public class BarrelController : Photon.MonoBehaviour {
 			fire f = squirt.GetComponent<fire> () as fire;
 			f.enabled = true;
 			f.setML (mouse);
-			if (tag == "greenTeam") squirt.GetComponent<fire>().setTeam(0);
-			if (tag == "blueTeam") squirt.GetComponent<fire>().setTeam(1);
+			f.setOL (obj);
+			if (tag == "greenTeam") f.setTeam(0);
+			if (tag == "blueTeam") f.setTeam(1);
 		}
 	}
 }

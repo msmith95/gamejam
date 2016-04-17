@@ -14,6 +14,7 @@ public class fire : MonoBehaviour {
 
     int team;
 	Vector3 mouseLoc;
+	Vector3 objLoc;
 
 	bool firstTime;
 
@@ -35,7 +36,7 @@ public class fire : MonoBehaviour {
 
 			mouse_pos = mouseLoc;
 			mouse_pos.z = 5.23f; //The distance between the camera and object
-			object_pos = Camera.main.WorldToScreenPoint(transform.position);
+			object_pos = objLoc;
 			mouse_pos.x = mouse_pos.x - object_pos.x;
 			mouse_pos.y = mouse_pos.y - object_pos.y;
 
@@ -77,13 +78,13 @@ public class fire : MonoBehaviour {
         print("setTeam");
         team = _team;
     }
-	public Vector3 getML()
-	{
-		return mouseLoc;
-	}
 
 	public void setML (Vector3 ml)
 	{
 		mouseLoc = ml;
+	}
+	public void setOL (Vector3 ol)
+	{
+		objLoc = ol;
 	}
 }
