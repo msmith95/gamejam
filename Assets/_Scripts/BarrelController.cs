@@ -101,7 +101,7 @@ public class BarrelController : Photon.MonoBehaviour {
                     if (tag == "greenTeam") squirt.GetComponent<fire>().setTeam(0);
                     if (tag == "blueTeam") squirt.GetComponent<fire>().setTeam(1);
                     print(squirt.GetComponent<fire>().getTeam());*/
-					barrel.RPC ("createProj", PhotonTargets.AllViaServer, "Squirt", transform.position + new Vector3 (0.5f, 0f, 0f), Quaternion.Euler (new Vector3 (0, -angle, 0)));
+					barrel.RPC ("createProj", PhotonTargets.AllViaServer, "Squirt", transform.position + new Vector3 (0.5f, 0f, 0f), angle);
 					GameObject squirt = GameObject.Instantiate(squirtPrefab, transform.position + new Vector3 (0f, 0f, 0f), Quaternion.Euler (new Vector3 (0, -angle, 0))) as GameObject;
 					fire f = squirt.GetComponent<fire> () as fire;
 					f.enabled = true;
@@ -138,13 +138,13 @@ public class BarrelController : Photon.MonoBehaviour {
     }
 
 	[PunRPC]
-	public void createProj (String prefab, Vector3 position, Quaternion rot){
+	public void createProj (String prefab, Vector3 position, float rot){
 		if (!photonView.isMine){
 			GameObject squirt;
 			if (prefab == "Squirt") {
-				squirt = GameObject.Instantiate(squirtPrefab, position, rot) as GameObject;
+				squirt = GameObject.Instantiate(squirtPrefab, position, Quaternion.Euler (new Vector3 (0, -rot, 0))) as GameObject;
 			} else {
-				squirt = GameObject.Instantiate(balloonPrefab, position, rot) as GameObject;
+				squirt = GameObject.Instantiate(balloonPrefab, position, Quaternion.Euler (new Vector3 (0, -rot, 0))) as GameObject;
 			}
 			
 			fire f = squirt.GetComponent<fire> () as fire;
