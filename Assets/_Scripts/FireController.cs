@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class FireController : MonoBehaviour {
 
+    public FireHealth fh;
+
     public Text healthText;
 
     public int totalHealth;
@@ -22,12 +24,14 @@ public class FireController : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("balloon"))
         {
-            totalHealth -= 10;
+            if (gameObject.CompareTag("greenTeam")) fh.decFH1(-10);
+            if (gameObject.CompareTag("blueTeam")) fh.decFH2(-10);
             Destroy(other.gameObject);
         }
         else if (other.gameObject.CompareTag("squirt"))
         {
-            totalHealth -= 1;
+            if (gameObject.CompareTag("greenTeam")) fh.decFH1(-1);
+            if (gameObject.CompareTag("blueTeam")) fh.decFH2(-1);
             Destroy(other.gameObject);
         }
     }
