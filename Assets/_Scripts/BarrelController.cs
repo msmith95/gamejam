@@ -28,9 +28,7 @@ public class BarrelController : Photon.MonoBehaviour {
     int maxBalloonSupply, maxSquirtSupply;
 
 
-    public Text balloonSupplyText;
-    public Text squirtSupplyText;
-    public Text squirtDurationText;
+    public BarController sp;
 
 	PhotonView barrel;
 
@@ -44,9 +42,6 @@ public class BarrelController : Photon.MonoBehaviour {
 
         maxBalloonSupply = balloonSupply;
         maxSquirtSupply = squirtSupply;
-		balloonSupplyText = GameObject.FindGameObjectWithTag ("ballonSupply").GetComponent<Text>() as Text;
-		squirtSupplyText = GameObject.FindGameObjectWithTag ("squirtSupply").GetComponent<Text>() as Text;
-		squirtDurationText = GameObject.FindGameObjectWithTag ("squirtDuration").GetComponent<Text>() as Text;
 
 		barrel = photonView;
     }
@@ -129,9 +124,14 @@ public class BarrelController : Photon.MonoBehaviour {
 
         }
 
+        sp.setTopBar(squirtSupply * 2);
+        sp.setBotBar(balloonSupply * 20);
+
+        /*
         balloonSupplyText.text = "Balloons - " + balloonSupply.ToString();
         squirtSupplyText.text = "Squirts - " + squirtSupply.ToString();
         squirtDurationText.text = "Squirt Duration - " + squirtDuration.ToString();
+        */
     }
 
     public void refillSupplies(int squirtRate, int balloonRate)

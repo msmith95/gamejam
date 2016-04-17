@@ -26,8 +26,8 @@ public class PlayerHealthController : MonoBehaviour {
         if (gameObject.CompareTag("greenTeam")) totalHealth = ph.getPH1();
         if (gameObject.CompareTag("blueTeam")) totalHealth = ph.getPH2();
 
-        healthText1.text = ph.getPH1().ToString();
-        healthText2.text = ph.getPH2().ToString();
+        //healthText1.text = ph.getPH1().ToString();
+        //healthText2.text = ph.getPH2().ToString();
     }
 
     void OnTriggerEnter(Collider other)

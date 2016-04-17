@@ -18,7 +18,6 @@ public class FireController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        print(fh.getFH1() + " / " + totalHealth);
         f1h.setBotBar(fh.getFH1());
         f2h.setBotBar(fh.getFH2());
     }
