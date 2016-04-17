@@ -78,6 +78,7 @@
      <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\Views\PhotonTransformViewRotationModel.cs" />
      <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\Views\PhotonTransformViewScaleControl.cs" />
      <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\Views\PhotonTransformViewScaleModel.cs" />
+     <Compile Include="Assets\PlayerHealth.cs" />
      <Compile Include="Assets\_Scripts\BarrelController.cs" />
      <Compile Include="Assets\_Scripts\FireController.cs" />
      <Compile Include="Assets\_Scripts\FireHealth.cs" />
@@ -86,6 +87,7 @@
      <Compile Include="Assets\_Scripts\NetworkProjectile.cs" />
      <Compile Include="Assets\_Scripts\NetworkSpritePlane.cs" />
      <Compile Include="Assets\_Scripts\PlayerController.cs" />
+     <Compile Include="Assets\_Scripts\PlayerHealthController.cs" />
      <Compile Include="Assets\_Scripts\PlayerPlaneAligner.cs" />
      <Compile Include="Assets\_Scripts\Randomizer.cs" />
      <Compile Include="Assets\_Scripts\WallCollision.cs" />

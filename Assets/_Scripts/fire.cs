@@ -12,6 +12,8 @@ public class fire : MonoBehaviour {
     Vector3 object_pos;
     float angle;
 
+    int team;
+
     void Start () {
 		rb = GetComponent<Rigidbody> ();
 
@@ -43,4 +45,14 @@ public class fire : MonoBehaviour {
 		Vector3 movement = Vector3.Normalize(new Vector3(xVel, 0f, zVel));
 		rb.velocity = movement * projectileSpeed;
 	}
+
+    public int getTeam()
+    {
+        return team;
+    }
+
+    public void setTeam(int _team)
+    {
+        team = _team;
+    }
 }
