@@ -78,6 +78,7 @@ public class BarrelController : Photon.MonoBehaviour {
 			if (tag == "blueTeam") balloon.GetComponent<fire>().setTeam(1);
 			fire f = balloon.GetComponent<fire> () as fire;
 			f.enabled = true;
+			f.setML (Input.mousePosition);
             nextFire = Time.time + squirtFireRate;
             balloonSupply -= 1;
         }
@@ -101,10 +102,11 @@ public class BarrelController : Photon.MonoBehaviour {
                     if (tag == "greenTeam") squirt.GetComponent<fire>().setTeam(0);
                     if (tag == "blueTeam") squirt.GetComponent<fire>().setTeam(1);
                     print(squirt.GetComponent<fire>().getTeam());*/
-					barrel.RPC ("createProj", PhotonTargets.AllViaServer, "Squirt", transform.position + new Vector3 (0.5f, 0f, 0f), angle);
+					barrel.RPC ("createProj", PhotonTargets.AllViaServer, "Squirt", transform.position + new Vector3 (0.5f, 0f, 0f), angle,Input.mousePosition);
 					GameObject squirt = GameObject.Instantiate(squirtPrefab, transform.position + new Vector3 (0f, 0f, 0f), Quaternion.Euler (new Vector3 (0, -angle, 0))) as GameObject;
 					fire f = squirt.GetComponent<fire> () as fire;
 					f.enabled = true;
+					f.setML (Input.mousePosition);
 
 					if (tag == "greenTeam") squirt.GetComponent<fire>().setTeam(0);
 					if (tag == "blueTeam") squirt.GetComponent<fire>().setTeam(1);
@@ -138,7 +140,7 @@ public class BarrelController : Photon.MonoBehaviour {
     }
 
 	[PunRPC]
-	public void createProj (String prefab, Vector3 position, float rot){
+	public void createProj (String prefab, Vector3 position, float rot,Vector3 mouse){
 		if (!photonView.isMine){
 			GameObject squirt;
 			if (prefab == "Squirt") {
@@ -146,9 +148,10 @@ public class BarrelController : Photon.MonoBehaviour {
 			} else {
 				squirt = GameObject.Instantiate(balloonPrefab, position, Quaternion.Euler (new Vector3 (0, -rot, 0))) as GameObject;
 			}
-			
+
 			fire f = squirt.GetComponent<fire> () as fire;
 			f.enabled = true;
+			f.setML (mouse);
 			if (tag == "greenTeam") squirt.GetComponent<fire>().setTeam(0);
 			if (tag == "blueTeam") squirt.GetComponent<fire>().setTeam(1);
 		}
