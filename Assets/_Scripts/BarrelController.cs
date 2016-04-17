@@ -28,13 +28,16 @@ public class BarrelController : Photon.MonoBehaviour {
     int maxBalloonSupply, maxSquirtSupply;
 
 
-    public BarController sp;
+    BarController sp;
 
 	PhotonView barrel;
 
 
     // Use this for initialization
     void Start () {
+
+        sp = GameObject.FindGameObjectWithTag("supplies").GetComponent<BarController>() as BarController;
+
         tag = transform.parent.transform.parent.tag;
 
         squirting = false;
