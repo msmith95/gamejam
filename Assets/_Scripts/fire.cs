@@ -37,7 +37,7 @@ public class fire : MonoBehaviour {
 			Destroy (gameObject);
 		}
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		Vector3 movement = Vector3.Normalize(new Vector3(xVel, 0f, zVel));

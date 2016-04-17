@@ -34,4 +34,20 @@ public class FireHealth : MonoBehaviour {
     {
         fireHealth2 -= amount;
     }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.isWriting)
+        {
+            // We own this player: send the others our data
+            stream.SendNext(fireHealth1);
+            stream.SendNext(fireHealth2);
+        }
+        else
+        {
+            // Network player, receive data
+            fireHealth1 = (int)stream.ReceiveNext();
+            fireHealth2 = (int)stream.ReceiveNext();
+        }
+    }
 }
