@@ -40,6 +40,8 @@ public class Randomizer : Photon.PunBehaviour {
 		}
 		PlayerController controller = monster.GetComponent<PlayerController> ();
 		controller.enabled = true;
-		controller.activeScript(); 
+        PlayerHealthController controller2 = monster.GetComponent<PlayerHealthController>();
+        controller2.enabled = true;
+        controller.activeScript(); 
 	}
 }

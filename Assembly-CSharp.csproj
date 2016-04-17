@@ -93,6 +93,7 @@
      <Compile Include="Assets\_Scripts\WallCollision.cs" />
      <Compile Include="Assets\_Scripts\fire.cs" />
      <Compile Include="Assets\_Scripts\repeatTexture.cs" />
+     <Compile Include="Assets\titlescenestuff\Scenes.cs" />
      <None Include="Assets\Photon Unity Networking\Changelog.txt" />
      <None Include="Assets\Plugins\Photon3Unity3D.xml" />
      <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Simple.shader" />

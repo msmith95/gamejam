@@ -6,14 +6,15 @@ public class PlayerHealthController : MonoBehaviour {
 
     public PlayerHealth ph;
 
-    public Text healthText;
+    public Text healthText1, healthText2;
 
     public int totalHealth;
 
     // Use this for initialization
     void Start()
     {
-
+        healthText1 = GameObject.Find("PH1").GetComponent<Text>() as Text;
+        healthText2 = GameObject.Find("PH2").GetComponent<Text>() as Text;
     }
 
     // Update is called once per frame
@@ -22,7 +23,10 @@ public class PlayerHealthController : MonoBehaviour {
         if (gameObject.CompareTag("greenTeam")) totalHealth = ph.getPH1();
         if (gameObject.CompareTag("blueTeam")) totalHealth = ph.getPH2();
 
-        healthText.text = "HP - " + totalHealth.ToString();
+        //healthText.text = "HP - " + totalHealth.ToString();
+
+        if (gameObject.CompareTag("greenTeam")) healthText1.text = ph.getPH1().ToString();
+        if (gameObject.CompareTag("blueTeam")) healthText2.text = ph.getPH2().ToString();
     }
 
     void OnTriggerEnter(Collider other)
