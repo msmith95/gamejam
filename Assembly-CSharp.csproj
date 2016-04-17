@@ -82,6 +82,7 @@
      <Compile Include="Assets\_Scripts\FireController.cs" />
      <Compile Include="Assets\_Scripts\GameLogic.cs" />
      <Compile Include="Assets\_Scripts\NetworkCharacter.cs" />
+     <Compile Include="Assets\_Scripts\NetworkProjectile.cs" />
      <Compile Include="Assets\_Scripts\NetworkSpritePlane.cs" />
      <Compile Include="Assets\_Scripts\PlayerController.cs" />
      <Compile Include="Assets\_Scripts\PlayerPlaneAligner.cs" />
