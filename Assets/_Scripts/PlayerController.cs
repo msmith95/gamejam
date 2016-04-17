@@ -3,6 +3,8 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
+	PlayerHealth ph;
+
     public int speed;
     Rigidbody rb;
 
@@ -20,6 +22,8 @@ public class PlayerController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+		ph = GameObject.FindGameObjectWithTag ("Scripts").GetComponent<PlayerHealth> () as PlayerHealth;
+
         rb = GetComponent<Rigidbody>();
 
         nextFill = 0;
@@ -54,4 +58,33 @@ public class PlayerController : MonoBehaviour {
         }
 
     }
+
+	void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.CompareTag("balloon"))
+		{
+			if (gameObject.CompareTag ("greenTeam") && other.gameObject.GetComponent<fire> ().getTeam () == 1) {
+				ph.decPH1 (10);
+				Destroy (other.gameObject);
+			}
+			if (gameObject.CompareTag ("blueTeam") && other.gameObject.GetComponent<fire> ().getTeam () == 0) {
+			
+				ph.decPH2 (10);
+				Destroy (other.gameObject);
+			}
+
+		}
+		else if (other.gameObject.CompareTag("squirt"))
+		{
+			if (gameObject.CompareTag ("greenTeam") && other.gameObject.GetComponent<fire> ().getTeam () == 1) {
+
+				ph.decPH1 (1);
+				Destroy (other.gameObject);
+			}
+			if (gameObject.CompareTag ("blueTeam") && other.gameObject.GetComponent<fire> ().getTeam () == 0) {
+				ph.decPH2 (1);
+				Destroy (other.gameObject);
+			}
+		}
+	}
 }
