@@ -33,8 +33,10 @@ public class Randomizer : Photon.PunBehaviour {
 	{
 		if (PhotonNetwork.playerList.Length == 1) {
 			monster = PhotonNetwork.Instantiate ("Player", new Vector3 (-57.6f, 4f, 0f), Quaternion.identity, 0);
+			monster.tag = "greenTeam";
 		} else {
 			monster = PhotonNetwork.Instantiate ("Player", new Vector3 (57.6f, 4f, 0f), Quaternion.identity, 0);
+			monster.tag = "blueTeam";
 		}
 		PlayerController controller = monster.GetComponent<PlayerController> ();
 		controller.enabled = true;

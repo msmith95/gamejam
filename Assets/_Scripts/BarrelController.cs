@@ -36,6 +36,9 @@ public class BarrelController : MonoBehaviour {
 
         maxBalloonSupply = balloonSupply;
         maxSquirtSupply = squirtSupply;
+		balloonSupplyText = GameObject.FindGameObjectWithTag ("ballonSupply").GetComponent<Text>() as Text;
+		squirtSupplyText = GameObject.FindGameObjectWithTag ("squirtSupply").GetComponent<Text>() as Text;
+		squirtDurationText = GameObject.FindGameObjectWithTag ("squirtDuration").GetComponent<Text>() as Text;
     }
 	
 	// Update is called once per frame
