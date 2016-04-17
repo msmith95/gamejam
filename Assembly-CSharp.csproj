@@ -95,6 +95,7 @@
      <Compile Include="Assets\_Scripts\counter.cs" />
      <Compile Include="Assets\_Scripts\fire.cs" />
      <Compile Include="Assets\_Scripts\sceneloader.cs" />
+     <Compile Include="Assets\_Scripts\splatSound.cs" />
      <Compile Include="Assets\titlescenestuff\Scenes.cs" />
      <None Include="Assets\Photon Unity Networking\Changelog.txt" />
      <None Include="Assets\Plugins\Photon3Unity3D.xml" />
