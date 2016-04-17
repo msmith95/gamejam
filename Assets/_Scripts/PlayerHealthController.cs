@@ -13,7 +13,7 @@ public class PlayerHealthController : MonoBehaviour {
     void Start()
     {
         ph = GameObject.FindGameObjectWithTag("Scripts").GetComponent<PlayerHealth>();
-        print(ph.getPH1());
+        
 
         healthText1 = GameObject.FindGameObjectWithTag("PH1").GetComponent<Text>() as Text;
         healthText2 = GameObject.FindGameObjectWithTag("PH2").GetComponent<Text>() as Text;

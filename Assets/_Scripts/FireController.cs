@@ -9,6 +9,7 @@ public class FireController : MonoBehaviour {
     public Text healthText;
 
     public int totalHealth;
+    public BarController f1h, f2h, supplies;
 
 	// Use this for initialization
 	void Start () {
@@ -17,11 +18,10 @@ public class FireController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (gameObject.CompareTag("greenTeam")) totalHealth = fh.getFH1();
-        if (gameObject.CompareTag("blueTeam")) totalHealth = fh.getFH2();
-
-        healthText.text = "HP - " + totalHealth.ToString();
-	}
+        print(fh.getFH1() + " / " + totalHealth);
+        f1h.setBotBar(fh.getFH1());
+        f1h.setBotBar(fh.getFH1());
+    }
 
     void OnTriggerEnter(Collider other)
     {

@@ -53,7 +53,6 @@ public class fire : MonoBehaviour {
 
     public void setTeam(int _team)
     {
-        print("setTeam");
         team = _team;
     }
 }
