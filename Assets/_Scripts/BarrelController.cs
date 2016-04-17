@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using System;
 
-public class BarrelController : MonoBehaviour {
+public class BarrelController : Photon.MonoBehaviour {
 
     String tag;
 
@@ -31,6 +31,8 @@ public class BarrelController : MonoBehaviour {
     public Text squirtSupplyText;
     public Text squirtDurationText;
 
+	PhotonView barrel;
+
     // Use this for initialization
     void Start () {
         tag = transform.parent.transform.parent.tag;
@@ -43,6 +45,8 @@ public class BarrelController : MonoBehaviour {
 		balloonSupplyText = GameObject.FindGameObjectWithTag ("ballonSupply").GetComponent<Text>() as Text;
 		squirtSupplyText = GameObject.FindGameObjectWithTag ("squirtSupply").GetComponent<Text>() as Text;
 		squirtDurationText = GameObject.FindGameObjectWithTag ("squirtDuration").GetComponent<Text>() as Text;
+
+		barrel = photonView;
     }
 	
 	// Update is called once per frame
@@ -62,10 +66,17 @@ public class BarrelController : MonoBehaviour {
         }
         else if (Input.GetMouseButtonDown(1) && Time.time > nextFire && balloonSupply > 0)
         {
-            GameObject balloon = PhotonNetwork.Instantiate("Balloon", transform.position + new Vector3(0.0f, 0.0f, 0.0f), Quaternion.Euler(new Vector3(0, -angle, 0)), 0) as GameObject;
+           /* GameObject balloon = PhotonNetwork.Instantiate("Balloon", transform.position + new Vector3(0.0f, 0.0f, 0.0f), Quaternion.Euler(new Vector3(0, -angle, 0)), 0) as GameObject;
             if (tag == "greenTeam") balloon.GetComponent<fire>().setTeam(0);
             if (tag == "blueTeam") balloon.GetComponent<fire>().setTeam(1);
             fire f = balloon.GetComponent<fire> () as fire;
+			f.enabled = true;*/
+
+			barrel.RPC ("createProj", PhotonTargets.AllViaServer, "Balloon", transform.position + new Vector3 (0f, 0f, 0f), Quaternion.Euler (new Vector3 (0, -angle, 0)));
+			GameObject balloon = GameObject.Instantiate(balloonPrefab, transform.position + new Vector3 (0f, 0f, 0f), Quaternion.Euler (new Vector3 (0, -angle, 0))) as GameObject;
+			if (tag == "greenTeam") balloon.GetComponent<fire>().setTeam(0);
+			if (tag == "blueTeam") balloon.GetComponent<fire>().setTeam(1);
+			fire f = balloon.GetComponent<fire> () as fire;
 			f.enabled = true;
             nextFire = Time.time + squirtFireRate;
             balloonSupply -= 1;
@@ -82,14 +93,21 @@ public class BarrelController : MonoBehaviour {
                 else if (squirtCounter <= squirtDuration || Input.GetMouseButton(0))
                 {
                     squirtCounter += 1;
-                    GameObject squirt = PhotonNetwork.Instantiate("Squirt", transform.position + new Vector3(0.5f, 0.0f, 0f), Quaternion.Euler(new Vector3(0, -angle, 0)), 0) as GameObject;
+                    /*GameObject squirt = PhotonNetwork.Instantiate("Squirt", transform.position + new Vector3(0.5f, 0.0f, 0f), Quaternion.Euler(new Vector3(0, -angle, 0)), 0) as GameObject;
 
                     fire f = squirt.GetComponent<fire> () as fire;
 					f.enabled = true;
 
                     if (tag == "greenTeam") squirt.GetComponent<fire>().setTeam(0);
                     if (tag == "blueTeam") squirt.GetComponent<fire>().setTeam(1);
-                    print(squirt.GetComponent<fire>().getTeam());
+                    print(squirt.GetComponent<fire>().getTeam());*/
+					barrel.RPC ("createProj", PhotonTargets.AllViaServer, "Squirt", transform.position + new Vector3 (0.5f, 0f, 0f), Quaternion.Euler (new Vector3 (0, -angle, 0)));
+					GameObject squirt = GameObject.Instantiate(squirtPrefab, transform.position + new Vector3 (0f, 0f, 0f), Quaternion.Euler (new Vector3 (0, -angle, 0))) as GameObject;
+					fire f = squirt.GetComponent<fire> () as fire;
+					f.enabled = true;
+
+					if (tag == "greenTeam") squirt.GetComponent<fire>().setTeam(0);
+					if (tag == "blueTeam") squirt.GetComponent<fire>().setTeam(1);
 
                     squirtSupply -= 1;
 
@@ -118,4 +136,23 @@ public class BarrelController : MonoBehaviour {
         if (squirtSupply > maxSquirtSupply) squirtSupply = maxSquirtSupply;
         if (balloonSupply > maxBalloonSupply) balloonSupply = maxBalloonSupply;
     }
+
+	[PunRPC]
+	public void createProj (String prefab, Vector3 position, Quaternion rot){
+		if (!photonView.isMine){
+			GameObject squirt;
+			if (prefab == "Squirt") {
+				squirt = GameObject.Instantiate(squirtPrefab, position, rot) as GameObject;
+			} else {
+				squirt = GameObject.Instantiate(balloonPrefab, position, rot) as GameObject;
+			}
+			
+			fire f = squirt.GetComponent<fire> () as fire;
+			f.enabled = true;
+			if (tag == "greenTeam") squirt.GetComponent<fire>().setTeam(0);
+			if (tag == "blueTeam") squirt.GetComponent<fire>().setTeam(1);
+		}
+	}
 }
+
+
