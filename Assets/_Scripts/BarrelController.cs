@@ -4,7 +4,9 @@ using UnityEngine.UI;
 using System;
 
 public class BarrelController : MonoBehaviour {
-    
+
+    String tag;
+
     Vector3 mouse_pos;
     Vector3 object_pos;
     float angle;
@@ -31,6 +33,8 @@ public class BarrelController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        tag = transform.parent.transform.parent.tag;
+
         squirting = false;
         squirtCounter = 0;
 
@@ -59,8 +63,8 @@ public class BarrelController : MonoBehaviour {
         else if (Input.GetMouseButtonDown(1) && Time.time > nextFire && balloonSupply > 0)
         {
             GameObject balloon = PhotonNetwork.Instantiate("Balloon", transform.position + new Vector3(0.0f, 0.0f, 0.0f), Quaternion.Euler(new Vector3(0, -angle, 0)), 0) as GameObject;
-            if (gameObject.CompareTag("greenTeam")) balloon.GetComponent<fire>().setTeam(0);
-            if (gameObject.CompareTag("blueTeam")) balloon.GetComponent<fire>().setTeam(1);
+            if (tag == "greenTeam") balloon.GetComponent<fire>().setTeam(0);
+            if (tag == "blueTeam") balloon.GetComponent<fire>().setTeam(1);
             fire f = balloon.GetComponent<fire> () as fire;
 			f.enabled = true;
             nextFire = Time.time + squirtFireRate;
@@ -79,10 +83,14 @@ public class BarrelController : MonoBehaviour {
                 {
                     squirtCounter += 1;
                     GameObject squirt = PhotonNetwork.Instantiate("Squirt", transform.position + new Vector3(0.5f, 0.0f, 0f), Quaternion.Euler(new Vector3(0, -angle, 0)), 0) as GameObject;
-                    if (gameObject.CompareTag("greenTeam")) squirt.GetComponent<fire>().setTeam(0);
-                    if (gameObject.CompareTag("blueTeam")) squirt.GetComponent<fire>().setTeam(1);
+
                     fire f = squirt.GetComponent<fire> () as fire;
 					f.enabled = true;
+
+                    if (tag == "greenTeam") squirt.GetComponent<fire>().setTeam(0);
+                    if (tag == "blueTeam") squirt.GetComponent<fire>().setTeam(1);
+                    print(squirt.GetComponent<fire>().getTeam());
+
                     squirtSupply -= 1;
 
                     nextSquirt = Time.time + squirtDelay;

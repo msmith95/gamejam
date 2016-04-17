@@ -26,14 +26,16 @@ public class PlayerHealthController : MonoBehaviour {
         if (gameObject.CompareTag("greenTeam")) totalHealth = ph.getPH1();
         if (gameObject.CompareTag("blueTeam")) totalHealth = ph.getPH2();
 
-        if (gameObject.CompareTag("greenTeam")) healthText1.text = ph.getPH1().ToString();
-        if (gameObject.CompareTag("blueTeam")) healthText2.text = ph.getPH2().ToString();
+        healthText1.text = ph.getPH1().ToString();
+        healthText2.text = ph.getPH2().ToString();
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("balloon"))
         {
+            print(other.GetComponent<fire>().getTeam());
+
             if (gameObject.CompareTag("greenTeam") && other.GetComponent<fire>().getTeam() == 1)
             {
                 ph.decPH1(10);
