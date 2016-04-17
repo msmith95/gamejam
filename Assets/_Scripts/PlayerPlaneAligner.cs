@@ -8,6 +8,10 @@ public class PlayerPlaneAligner : MonoBehaviour {
     Vector3 object_pos;
     float angle;
 
+	public void activeScript(){
+		BarrelController cont = gameObject.GetComponentInChildren<BarrelController> ();
+		cont.enabled = true;
+	}
 
     // Use this for initialization
     void Start () {

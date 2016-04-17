@@ -40,5 +40,6 @@ public class Randomizer : Photon.PunBehaviour {
 		}
 		PlayerController controller = monster.GetComponent<PlayerController> ();
 		controller.enabled = true;
+		gameObject.getChil
 	}
 }

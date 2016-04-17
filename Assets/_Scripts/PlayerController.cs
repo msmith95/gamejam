@@ -12,6 +12,11 @@ public class PlayerController : MonoBehaviour {
     float nextFill;
     public BarrelController barrel;
     
+	public void activeScript(){
+		PlayerPlaneAligner align = gameObject.GetComponentInChildren<PlayerPlaneAligner> ();
+		align.enabled = true;
+		align.activeScript ();
+	}
 
     // Use this for initialization
     void Start () {

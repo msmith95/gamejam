@@ -58,7 +58,7 @@ public class BarrelController : MonoBehaviour {
         }
         else if (Input.GetMouseButtonDown(1) && Time.time > nextFire && balloonSupply > 0)
         {
-            GameObject balloon = Instantiate(balloonPrefab, transform.position + new Vector3(0.0f, 0.0f, 0.0f), Quaternion.Euler(new Vector3(0, -angle, 0))) as GameObject;
+            GameObject balloon = PhotonNetwork.Instantiate("Balloon", transform.position + new Vector3(0.0f, 0.0f, 0.0f), Quaternion.Euler(new Vector3(0, -angle, 0))) as GameObject;
             nextFire = Time.time + squirtFireRate;
             balloonSupply -= 1;
         }
@@ -74,7 +74,7 @@ public class BarrelController : MonoBehaviour {
                 else if (squirtCounter <= squirtDuration || Input.GetMouseButton(0))
                 {
                     squirtCounter += 1;
-                    GameObject squirt = Instantiate(squirtPrefab, transform.position + new Vector3(0.5f, 0.0f, 0f), Quaternion.Euler(new Vector3(0, -angle, 0))) as GameObject;
+                    GameObject squirt = PhotonNetwork.Instantiate("Squirt", transform.position + new Vector3(0.5f, 0.0f, 0f), Quaternion.Euler(new Vector3(0, -angle, 0))) as GameObject;
                     squirtSupply -= 1;
 
                     nextSquirt = Time.time + squirtDelay;
