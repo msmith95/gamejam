@@ -20,7 +20,7 @@ public class FireController : MonoBehaviour {
 	void Update () {
         print(fh.getFH1() + " / " + totalHealth);
         f1h.setBotBar(fh.getFH1());
-        f1h.setBotBar(fh.getFH1());
+        f2h.setBotBar(fh.getFH2());
     }
 
     void OnTriggerEnter(Collider other)
