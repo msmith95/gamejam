@@ -17,6 +17,9 @@ public class FireController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (gameObject.CompareTag("greenTeam")) totalHealth = fh.getFH1();
+        if (gameObject.CompareTag("blueTeam")) totalHealth = fh.getFH2();
+
         healthText.text = "HP - " + totalHealth.ToString();
 	}
 
@@ -24,14 +27,14 @@ public class FireController : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("balloon"))
         {
-            if (gameObject.CompareTag("greenTeam")) fh.decFH1(-10);
-            if (gameObject.CompareTag("blueTeam")) fh.decFH2(-10);
+            if (gameObject.CompareTag("greenTeam")) fh.decFH1(10);
+            if (gameObject.CompareTag("blueTeam")) fh.decFH2(10);
             Destroy(other.gameObject);
         }
         else if (other.gameObject.CompareTag("squirt"))
         {
-            if (gameObject.CompareTag("greenTeam")) fh.decFH1(-1);
-            if (gameObject.CompareTag("blueTeam")) fh.decFH2(-1);
+            if (gameObject.CompareTag("greenTeam")) fh.decFH1(1);
+            if (gameObject.CompareTag("blueTeam")) fh.decFH2(1);
             Destroy(other.gameObject);
         }
     }

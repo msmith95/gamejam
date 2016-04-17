@@ -45,7 +45,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\FireHealth.cs" />
      <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\CustomTypes.cs" />
      <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\Enums.cs" />
      <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\Extensions.cs" />
@@ -81,6 +80,7 @@
      <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\Views\PhotonTransformViewScaleModel.cs" />
      <Compile Include="Assets\_Scripts\BarrelController.cs" />
      <Compile Include="Assets\_Scripts\FireController.cs" />
+     <Compile Include="Assets\_Scripts\FireHealth.cs" />
      <Compile Include="Assets\_Scripts\GameLogic.cs" />
      <Compile Include="Assets\_Scripts\NetworkCharacter.cs" />
      <Compile Include="Assets\_Scripts\NetworkProjectile.cs" />
