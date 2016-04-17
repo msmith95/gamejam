@@ -74,8 +74,8 @@ public class BarrelController : Photon.MonoBehaviour {
             fire f = balloon.GetComponent<fire> () as fire;
 			f.enabled = true;*/
 
-			ch_object_pos = Camera.main.WorldToScreenPoint (transform.GetChild (1).transform.position);
-			barrel.RPC ("createProj", PhotonTargets.AllViaServer, "Balloon", transform.position + new Vector3 (0f, 0f, 0f), angle,Input.mousePosition, ch_object_pos);
+			//ch_object_pos = Camera.main.WorldToScreenPoint (transform.GetChild (1).transform.position);
+			barrel.RPC ("createProj", PhotonTargets.All, "Balloon", transform.position + new Vector3 (0f, 0f, 0f), angle,Input.mousePosition, ch_object_pos);
 			GameObject balloon = GameObject.Instantiate(balloonPrefab, transform.position + new Vector3 (0f, 0f, 0f), Quaternion.Euler (new Vector3 (0, -angle, 0))) as GameObject;
 			if (tag == "greenTeam") balloon.GetComponent<fire>().setTeam(0);
 			if (tag == "blueTeam") balloon.GetComponent<fire>().setTeam(1);
@@ -106,7 +106,7 @@ public class BarrelController : Photon.MonoBehaviour {
                     if (tag == "blueTeam") squirt.GetComponent<fire>().setTeam(1);
                     print(squirt.GetComponent<fire>().getTeam());*/
 					ch_object_pos = Camera.main.WorldToScreenPoint (transform.GetComponentInChildren<Transform>().position);
-					barrel.RPC ("createProj", PhotonTargets.AllViaServer, "Squirt", transform.position + new Vector3 (0.5f, 0f, 0f), angle,Input.mousePosition, ch_object_pos);
+					barrel.RPC ("createProj", PhotonTargets.All, "Squirt", transform.position + new Vector3 (0.5f, 0f, 0f), angle,Input.mousePosition, ch_object_pos);
 					GameObject squirt = GameObject.Instantiate(squirtPrefab, transform.position + new Vector3 (0.5f, 0f, 0f), Quaternion.Euler (new Vector3 (0, -angle, 0))) as GameObject;
 					fire f = squirt.GetComponent<fire> () as fire;
 					f.enabled = true;
